@@ -3,16 +3,16 @@ import cv2
 import albumentations as A
 from tqdm import tqdm
 
-INPUT_IMAGES_DIR = "D:/project/input/images"
-INPUT_LABELS_DIR = "D:/project/input/labels"
-OUTPUT_IMAGES_DIR = "D:/project/output/images"
-OUTPUT_LABELS_DIR = "D:/project/output/labels"
+INPUT_IMAGES_DIR = "C:/Users/User/Documents/GitHub/New_augmentation/input/images"
+INPUT_LABELS_DIR = "C:/Users/User/Documents/GitHub/New_augmentation/input/labels"
+OUTPUT_IMAGES_DIR = "C:/Users/User/Documents/GitHub/New_augmentation/output/images"
+OUTPUT_LABELS_DIR = "C:/Users/User/Documents/GitHub/New_augmentation/output/labels"
 
 os.makedirs(OUTPUT_IMAGES_DIR, exist_ok=True)
 os.makedirs(OUTPUT_LABELS_DIR, exist_ok=True)
 
 transform = A.Compose([
-    A.Rotate(limit=[1,90], interpolation=cv2.INTER_LINEAR, border_mode=cv2.BORDER_REFLECT, always_apply=True, p=1),
+    A.Rotate(limit=90, interpolation=cv2.INTER_LINEAR, border_mode=cv2.BORDER_REFLECT, always_apply=True, p=1),
 ], bbox_params=A.BboxParams(format='yolo', label_fields=['category'], min_visibility=1))
 
 image_files = [f for f in os.listdir(INPUT_IMAGES_DIR) if f.endswith(('.jpg', '.jpeg', '.png'))]
